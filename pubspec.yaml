@@ -14,6 +14,9 @@ dependencies:
   introduction_screen: ^3.1.17
   shared_preferences: ^2.5.3
   google_fonts: ^6.3.0
+  toggle_switch: ^2.3.0
+  font_awesome_flutter: ^10.9.0
+  easy_localization: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +28,4 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/translations/
