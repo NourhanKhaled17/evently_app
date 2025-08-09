@@ -1,6 +1,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/introductionScreen/row_widget.dart';
+import 'package:evently_app/onBoardingScreen/onBoardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -77,7 +78,9 @@ class Introscreen extends StatelessWidget {
             // ),
             SizedBox(height: 28,),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pushReplacementNamed(context, OnBoardingScreen.routeName);
+              },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 16),
                 backgroundColor: Theme.of(context).primaryColor,
