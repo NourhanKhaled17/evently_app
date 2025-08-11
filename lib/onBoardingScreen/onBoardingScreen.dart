@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/onBoardingScreen/arrow_button.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import '../Home/home_screen.dart';
 import '../cacheHelper/cacheHelper.dart';
+import '../home/HomeScreen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static const String routeName ="Onboardingscreen";
