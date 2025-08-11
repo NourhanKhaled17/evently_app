@@ -2,8 +2,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/introductionScreen/row_widget.dart';
 import 'package:evently_app/onBoardingScreen/onBoardingScreen.dart';
+import 'package:evently_app/providers/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class Introscreen extends StatelessWidget {
@@ -12,6 +14,7 @@ class Introscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Image.asset("assets/images/app_bar_logo.png"),
@@ -28,54 +31,55 @@ class Introscreen extends StatelessWidget {
             SizedBox(height: 28,),
             Text("intro_desc".tr(), style: Theme.of(context).textTheme.titleSmall,),
             SizedBox(height: 28,),
-            RowWidget(text1: "language".tr(), text2: "En", text3: "ع"),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Text("language".tr(), style: Theme.of(context).textTheme.titleMedium,),
-            //     ToggleSwitch(
-            //       minWidth: 73.0,
-            //       minHeight: 30.0,
-            //       initialLabelIndex: context.locale.toString()=='en'?0:1,
-            //       cornerRadius: 20.0,
-            //       activeFgColor: Colors.white,
-            //       inactiveBgColor: Colors.grey,
-            //       inactiveFgColor: Colors.white,
-            //       totalSwitches: 2,
-            //       labels: ["En", "ع"],
-            //       activeBgColors: [[Theme.of(context).primaryColor],[Theme.of(context).primaryColor]],
-            //       onToggle: (index) {
-            //         if(index == 0){
-            //           context.setLocale(Locale('en'));
-            //         }else{
-            //           context.setLocale(Locale('ar'));
-            //         }
-            //       },
-            //     ),
-            //   ],
-            // ),
+           // RowWidget(text1: "language".tr(), text2: "En", text3: "ع"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("language".tr(), style: Theme.of(context).textTheme.titleMedium,),
+                ToggleSwitch(
+                  minWidth: 73.0,
+                  minHeight: 30.0,
+                  initialLabelIndex: context.locale.toString()=='en'?0:1,
+                  cornerRadius: 20.0,
+                  activeFgColor: Colors.white,
+                  inactiveBgColor: Colors.grey,
+                  inactiveFgColor: Colors.white,
+                  totalSwitches: 2,
+                  labels: ["En", "ع"],
+                  activeBgColors: [[Theme.of(context).primaryColor],[Theme.of(context).primaryColor]],
+                  onToggle: (index) {
+                    if(index == 0){
+                      context.setLocale(Locale('en'));
+                    }else{
+                      context.setLocale(Locale('ar'));
+                    }
+                  },
+                ),
+              ],
+            ),
             SizedBox(height: 16,),
-            RowWidget(text1: "theme".tr(), icon1:FontAwesomeIcons.solidSun, icon2:FontAwesomeIcons.moon),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Text("theme".tr(), style: Theme.of(context).textTheme.titleMedium,),
-            //     ToggleSwitch(
-            //       minWidth: 73.0,
-            //       minHeight: 30.0,
-            //       initialLabelIndex: 1,
-            //       cornerRadius: 20.0,
-            //       activeFgColor: Colors.white,
-            //       inactiveBgColor: Colors.grey,
-            //       inactiveFgColor: Colors.white,
-            //       totalSwitches: 2,
-            //       icons: [FontAwesomeIcons.solidSun, FontAwesomeIcons.moon],
-            //       activeBgColors: [[Theme.of(context).primaryColor],[Theme.of(context).primaryColor]],
-            //       onToggle: (index) {
-            //       },
-            //     ),
-            //   ],
-            // ),
+            //RowWidget(text1: "theme".tr(), icon1:FontAwesomeIcons.solidSun, icon2:FontAwesomeIcons.moon),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("theme".tr(), style: Theme.of(context).textTheme.titleMedium,),
+                ToggleSwitch(
+                  minWidth: 73.0,
+                  minHeight: 30.0,
+                  initialLabelIndex: provider.themeMode == ThemeMode.light ? 0 : 1,
+                  cornerRadius: 20.0,
+                  activeFgColor: Colors.white,
+                  inactiveBgColor: Colors.grey,
+                  inactiveFgColor: Colors.white,
+                  totalSwitches: 2,
+                  icons: [FontAwesomeIcons.solidSun, FontAwesomeIcons.moon],
+                  activeBgColors: [[Theme.of(context).primaryColor],[Theme.of(context).primaryColor]],
+                  onToggle: (index) {
+                    provider.changeTheme();
+                  },
+                ),
+              ],
+            ),
             SizedBox(height: 28,),
             ElevatedButton(
               onPressed: (){

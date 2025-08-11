@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/providers/my_provider.dart';
 import 'package:evently_app/theme/base_theme.dart';
 import 'package:evently_app/theme/dark_theme.dart';
 import 'package:evently_app/theme/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'Splash Screen/splash.dart';
 import 'Splash Screen/splash2.dart';
 import 'cacheHelper/cacheHelper.dart';
@@ -15,11 +17,14 @@ void main() async{
   await EasyLocalization.ensureInitialized();
   await CacheHelper.init();
   runApp(
-    EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('ar')],
-        path: 'assets/translations',
-        fallbackLocale: Locale('en'),
-        child: MyApp()
+      ChangeNotifierProvider(
+        create: (context)=> MyProvider(),
+      child: EasyLocalization(
+          supportedLocales: [Locale('en'), Locale('ar')],
+          path: 'assets/translations',
+          fallbackLocale: Locale('en'),
+          child: MyApp()
+      ),
     ),
   );
 }
@@ -29,6 +34,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     BaseTheme lightTheme = LightTheme();
     BaseTheme darkTheme = DarkTheme();
     return MaterialApp(
@@ -38,7 +44,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme.themeData,
       darkTheme: darkTheme.themeData,
-      themeMode: ThemeMode.light,
+      themeMode: provider.themeMode,
       initialRoute: CacheHelper.getEligibility() == true
           ? Splash2.routeName
           : Splash.routeName,
