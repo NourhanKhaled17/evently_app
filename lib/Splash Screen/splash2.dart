@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'package:evently_app/introductionScreen/IntroScreen.dart';
 import 'package:flutter/material.dart';
-
-import '../Home/home_screen.dart';
+import '../home/HomeScreen.dart';
 
 class Splash2 extends StatefulWidget {
   static const String routeName = "splash2";
