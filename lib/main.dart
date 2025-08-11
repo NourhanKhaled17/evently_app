@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
       initialRoute: CacheHelper.getEligibility() == true
           ? Splash2.routeName
           : Splash.routeName,
+
       routes: {
         Splash.routeName: (context) => const Splash(),
         Splash2.routeName: (context) => const Splash2(),
